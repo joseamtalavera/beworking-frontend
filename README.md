@@ -24,6 +24,66 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 
 This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Project Structure
+
+- `pages/` — Next.js routing directory.
+  - `main/` — Public pages (e.g., about, contact, home, services).
+  - `dashboard/` — Protected pages for authenticated users/admins.
+  - `api/` — API routes (serverless functions).
+  - `_app.js`, `_document.js` — Custom Next.js app/document (must remain at root).
+- `src/` — Source code for logic and UI.
+  - `components/` — Reusable React components.
+  - `hooks/` — Custom React hooks.
+  - `services/` — API service functions (e.g., backend communication).
+  - `utils/` — Utility/helper functions.
+  - `styles/` — CSS and style modules.
+
+## Backend Integration
+
+This project is a frontend tenant for a multitenant system. It connects to a Java backend (API) and uses POST/GET requests for data.
+
+- **API Base URL:** Set the backend URL in an environment variable (e.g., `.env.local`):
+  ```env
+  NEXT_PUBLIC_API_BASE_URL=https://your-backend-url.com/api
+  ```
+- **Making Requests:** Use `fetch` or a helper in `src/services/` to communicate with the backend. Example:
+  ```js
+  // src/services/api.js
+  export async function postData(endpoint, data) {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}${endpoint}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    return res.json();
+  }
+  ```
+
+## Development Guidelines
+
+- To add a public page: create a file in `pages/main/`.
+- To add a dashboard page: create a file in `pages/dashboard/` (use subfolders for admin/user separation).
+- Use `src/components/` for reusable UI.
+- Use `src/services/` for backend/API logic.
+- Use `src/hooks/` for custom React hooks.
+- Use `src/utils/` for helpers.
+- Protect dashboard routes with authentication logic (middleware or HOC).
+
+## Running & Building
+
+- Start dev server: `npm run dev`
+- Build: `npm run build`
+- Start production: `npm start`
+
+## Environment Variables
+
+- `NEXT_PUBLIC_API_BASE_URL` — Backend API base URL
+
+## Contributing
+
+- Document new endpoints and features in this README.
+- Follow the folder structure and guidelines above.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
