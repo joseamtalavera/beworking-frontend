@@ -17,7 +17,17 @@ import {
   Divider,
   Link,
 } from '@mui/material'
-import CheckCircleIcon from '@mui/icons-material/CheckCircle'
+import Image from 'next/image'
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import { HeroSection, HeroContent } from '../../src/styles/Home.styled';
+
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import BusinessIcon from '@mui/icons-material/Business';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
+import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
+import BadgeIcon from '@mui/icons-material/Badge';
+import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 
 export default function Home() {
   // reusable feature list
@@ -40,52 +50,117 @@ export default function Home() {
       <AppBar position="static" color="transparent" elevation={0}>
         <Container>
           <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
-            <Typography variant="h6">BeWorking</Typography>
+            <Typography variant="h5" sx={{ color: '#000' }}>BeWorking</Typography>
             <Box>
-              <Button>Planes</Button>
-              <Button>Puntos</Button>
-              <Button>On Demand</Button>
-              <Button>Login</Button>
+              <Button sx={{ textTransform: 'none', color: 'text.secondary' }}>Planes</Button>
+              <Button sx={{ textTransform: 'none', color: 'text.secondary' }}>BeSpaces</Button>
+              <Button sx={{ textTransform: 'none', color: 'text.secondary' }}>Ayuda</Button>
+              <Button sx={{ textTransform: 'none', color: 'text.secondary' }}>Login</Button>
             </Box>
           </Toolbar>
         </Container>
       </AppBar>
 
       {/* Hero */}
-      <Box sx={{ py: 8, textAlign: 'center', bgcolor: '#f5f5f5' }}>
-        <Container maxWidth="md">
-          <Typography variant="h2" component="h1" gutterBottom>
-            Oficina Virtual Málaga
+      <HeroSection>
+        <HeroContent maxWidth="md">
+          <Typography variant="h1" component="h1" gutterBottom>
+            Oficina Virtual
           </Typography>
-          <Typography variant="h5" gutterBottom>
-            La solución profesional para tu presencia without office
+          <Typography variant="h3" gutterBottom>
+            Transformamos tu Oficina Fisica en una Oficina Virtual
           </Typography>
-          <Button variant="contained" color="primary" size="large">
+          <Button variant="contained" color="success" size="large">
             Contrata
           </Button>
-        </Container>
-      </Box>
+        </HeroContent>
+      </HeroSection>
 
       {/* Plans */}
-      <Box sx={{ py: 8 }}>
-        <Container>
-          <Typography variant="h4" align="center" gutterBottom>
-            Nuestros 5 Planes
+      <Box sx={{ py: 8, textAlign: 'center' }}>
+        <Container maxWidth="md">
+          {/* Section Title */}
+          <Typography variant="h2" align="center" gutterBottom>
+            Nuestros 5 Pilares
           </Typography>
-          <Grid container spacing={4}>
-            {['Address', 'Box', 'On Demand', 'App', 'Comunidad'].map((plan) => (
-              <Grid item xs={12} sm={6} md={4} key={plan}>
-                <Card variant="outlined">
-                  <CardContent>
-                    <Typography variant="h6">{plan}</Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      Descripción breve del plan {plan.toLowerCase()}.
-                    </Typography>
-                    <Box textAlign="center" mt={2}>
-                      <Button size="small">Ver más</Button>
-                    </Box>
-                  </CardContent>
-                </Card>
+
+          {/* Intro Text */}
+          <Typography
+            variant="body1"
+            sx={{
+              color: 'text.primary',
+              textAlign: 'center',
+              fontSize: '1.1rem',
+              mb: 4,
+              lineHeight: 1.4,
+            }}
+          >
+            En BeWorking transformamos la tradicional Oficina Física en una&nbsp;
+            <Box component="span" sx={{ fontWeight: 'bold', color: '#ff9800' }}>
+              Oficina Virtual
+            </Box>
+            <br />
+            respaldada por nuestros&nbsp;
+            <Box component="span" sx={{ fontWeight: 'bold', color: '#ff9800' }}>
+              5 pilares
+            </Box>
+            .
+          </Typography>
+
+          {/* First row: 4 features */}
+          <Grid container spacing={4} justifyContent="center" sx={{ mt: 4 }}>
+            {[
+              {
+                icon: <MailOutlineIcon sx={{ fontSize: 48, color: 'primary.main' }} />, 
+                label: 'Recepción correspondencia y paquetes'
+              },
+              {
+                icon: <BusinessIcon sx={{ fontSize: 48, color: 'primary.main' }} />, 
+                label: 'Registro de tu negocio en Google Maps'
+              },
+              {
+                icon: <LocationOnIcon sx={{ fontSize: 48, color: 'primary.main' }} />, 
+                label: 'Domiciliación para fines fiscales y sociales'
+              },
+              {
+                icon: <LockOpenIcon sx={{ fontSize: 48, color: 'primary.main' }} />, 
+                label: 'Sin depósitos ni permanencia'
+              }
+            ].map(({ icon, label }) => (
+              <Grid item xs={6} sm={3} key={label}>
+                <Box>
+                  {icon}
+                  <Typography variant="subtitle1" sx={{ mt: 1 }}>
+                    {label}
+                  </Typography>
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
+
+          {/* Second row: 3 features */}
+          <Grid container spacing={4} justifyContent="center" sx={{ mt: 4 }}>
+            {[
+              {
+                icon: <MeetingRoomIcon sx={{ fontSize: 48, color: 'primary.main' }} />, 
+                label: 'Uso de oficina y salas cada mes'
+              },
+              {
+                icon: <BadgeIcon sx={{ fontSize: 48, color: 'primary.main' }} />, 
+                label: 'Logo de tu empresa en Recepción'
+              },
+              {
+                icon: <SupportAgentIcon sx={{ fontSize: 48, color: 'primary.main' }} />, 
+                label: 'Atención de visitas personalizadas'
+              }
+            ].map(({ icon, label }) => (
+              <Grid item xs={6} sm={4} key={label}>
+                <Box>
+                  {icon}
+                  <Typography variant="subtitle1" sx={{ mt: 1 }}>
+                    {label}
+                  </Typography>
+                </Box>
               </Grid>
             ))}
           </Grid>
@@ -147,7 +222,7 @@ export default function Home() {
           <Typography variant="body1" gutterBottom>
             Elige el plan que mejor se adapte a ti y comienza hoy mismo.
           </Typography>
-          <Button variant="contained" color="secondary" size="large">
+          <Button variant="contained" color="success" size="large">
             Reserva ahora
           </Button>
         </Container>

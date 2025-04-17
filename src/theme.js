@@ -3,11 +3,25 @@ import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   palette: {
+    mode: 'light',
     primary: {
-      main: '#1976d2',
+      main: '#ff9800', // orange
     },
     secondary: {
-      main: '#dc004e',
+      main: '#388e3c', // green
+    },
+    background: {
+      default: '#fff',
+      paper: '#fff',
+    },
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: 'none',
+        },
+      },
     },
   },
 });

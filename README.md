@@ -69,6 +69,58 @@ This project is a frontend tenant for a multitenant system. It connects to a Jav
 - Use `src/utils/` for helpers.
 - Protect dashboard routes with authentication logic (middleware or HOC).
 
+## Onboarding for New Developers
+
+Welcome to the BeWorking frontend! This project uses Next.js and Material UI. Here are some tips to help you get started quickly:
+
+### Project Overview
+- **Home Page:** The main public home page is at `pages/main/index.js`.
+- **Public Pages:** Add or edit public-facing pages in `pages/main/` (e.g., `about.js`, `contact.js`, `services.js`).
+- **Dashboard Pages:** For authenticated user/admin pages, use `pages/dashboard/` (with subfolders for `admin/` and `user/`).
+- **API Routes:** Serverless API endpoints live in `pages/api/`.
+- **UI Components:** Reusable UI lives in `src/components/`.
+- **Hooks:** Custom React hooks go in `src/hooks/`.
+- **Backend/API Logic:** Use `src/services/` for API calls and backend communication.
+- **Utilities:** Place helper functions in `src/utils/`.
+- **Styling:** Use `src/styles/` for global and modular CSS.
+
+### How to Start
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+2. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+3. **Visit the app:**
+   Open [http://localhost:3000/main](http://localhost:3000/main) to see the home page.
+
+### Adding Features
+- To add a new public page, create a file in `pages/main/`.
+- To add a dashboard page, use `pages/dashboard/` and the appropriate subfolder.
+- For new UI, add a component in `src/components/` and import it where needed.
+- For backend calls, add a function in `src/services/`.
+
+### Code Style & Best Practices
+- Use Material UI components for consistency.
+- Keep logic and UI separated (use hooks and services).
+- Document new features and endpoints in this README.
+- Protect dashboard routes with authentication logic.
+
+### Example: Adding a New Public Page
+1. Create `pages/main/newpage.js`:
+   ```js
+   export default function NewPage() {
+     return <div>My new public page!</div>;
+   }
+   ```
+2. Visit [http://localhost:3000/main/newpage](http://localhost:3000/main/newpage)
+
+### Questions?
+- Check the comments in the code for guidance.
+- Ask the team if you’re unsure where something belongs.
+
 ## Running & Building
 
 - Start dev server: `npm run dev`
