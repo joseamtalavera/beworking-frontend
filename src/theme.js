@@ -8,7 +8,12 @@ const theme = createTheme({
       main: '#ff9800', // orange
     },
     secondary: {
-      main: '#388e3c', // green
+      main: '#009624', // green
+    },
+    success: {
+      main: '#009624',
+      dark: '#006014',
+      contrastText: '#fff',
     },
     background: {
       default: '#fff',
