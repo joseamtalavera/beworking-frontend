@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   AppBar,
   Toolbar,
@@ -32,6 +32,9 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import SendIcon from '@mui/icons-material/Send';
 import { HeroSection, HeroContent } from '../../src/styles/Home.styled';
 import { PricingCard } from '../../src/components/PricingCard';
+import { GoogleReviewsCarousel } from '../../src/components/GoogleReviewsCarousel';
+import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import PilarSection from '../../src/components/PilarSection';
 
 export default function Home() {
   // reusable feature list
@@ -203,9 +206,9 @@ export default function Home() {
       <Divider />
 
       {/* Feature Sections */}
-      <Box sx={{ py: 8 }}>
+     {/*  <Box sx={{ py: 8 }}>
         <Container>
-          <Section
+          <PilarSection
             title="On Demand (Puntos)"
             image="/assets/ondemand.jpg"
             features={[
@@ -218,7 +221,7 @@ export default function Home() {
 
           <Divider sx={{ my: 6 }} />
 
-          <Section
+          <PilarSection
             title="Super App"
             image="/assets/superapp.jpg"
             features={[
@@ -231,7 +234,7 @@ export default function Home() {
 
           <Divider sx={{ my: 6 }} />
 
-          <Section
+          <PilarSection
             title="Comunidad"
             image="/assets/comunidad.jpg"
             features={[
@@ -242,7 +245,69 @@ export default function Home() {
             reverse={false}
           />
         </Container>
-      </Box>
+      </Box> */}
+
+
+
+<Box sx={{ py: 8 }}>
+  <PilarSection
+    title="Domiciliación Fiscal y Social"
+    image="/Domiciliacion.png"
+    description="Te ofrecemos una dirección legal y fiscal en una ubicación premium en Málaga."
+    benefits={[
+      'Cumple con los requisitos legales y fiscales',
+      'Ubicación visible en Google Maps',
+      'Ideal para autónomos y startups',
+    ]}
+  />
+
+  <PilarSection
+    title="Recepción de Paquetería y Correspondencia"
+    image="/assets/pilares/paquetes.svg"
+    description="Tu oficina siempre atendida: nosotros recibimos tu correo y paquetes."
+    benefits={[
+      'Notificación inmediata por email',
+      'Escaneado opcional de cartas importantes',
+      'Recogida en horario amplio',
+    ]}
+    reverse
+  />
+
+  <PilarSection
+    title="Acceso al Network BeSpaces"
+    image="/assets/pilares/network.svg"
+    description="Forma parte de una comunidad profesional activa y conectada."
+    benefits={[
+      'Accede a más de 50 espacios flexibles',
+      'Conecta con emprendedores y freelancers',
+      'Promociona tus servicios en la comunidad',
+    ]}
+  />
+
+  <PilarSection
+    title="Uso gratuito de la Super App"
+    image="/assets/pilares/superapp.svg"
+    description="Herramientas de gestión empresarial incluidas en tu plan de oficina virtual."
+    benefits={[
+      'Gestión de documentos, clientes y facturas',
+      'Soporte por chat y correo',
+      'Acceso desde cualquier dispositivo',
+    ]}
+    reverse
+  />
+
+  <PilarSection
+    title="Eventos y Networking Mensuales"
+    image="/assets/pilares/eventos.svg"
+    description="Participa en encuentros, talleres y cafés de negocios."
+    benefits={[
+      'Eventos presenciales en Málaga',
+      'Sesiones de formación y pitching',
+      'Crecimiento colaborativo con otros miembros',
+    ]}
+  />
+</Box>
+
 
       <Divider />
 
@@ -291,21 +356,39 @@ export default function Home() {
       <Box sx={{ py: 8, textAlign: 'center' }}>
         <Container>
           <Typography variant="h4" gutterBottom>
-            Ubicación en España
+            Ubicación de BeSpaces
           </Typography>
           <Box
             sx={{
-              height: 300,
+              height: 500,
               backgroundColor: '#ddd',
               borderRadius: 2,
+              overflow: 'hidden',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
+              p: 0,
             }}
           >
-            {/* Replace with actual Map component */}
-            <Typography variant="subtitle1">[Aquí irá el mapa]</Typography>
+            <LoadScript googleMapsApiKey="AIzaSyD2wGD__sSA7AEkqMm-9pmKDITc6jivP6o">
+              <GoogleMap
+                mapContainerStyle={{ width: '100%', height: '500px' }}
+                center={{ lat: 40.4637, lng: -3.7492 }} // Spain central
+                zoom={5}
+                options={{
+                  disableDefaultUI: true,
+                  zoomControl: true,
+                }}
+              />
+            </LoadScript>
           </Box>
+          <Button
+            variant="contained"
+            sx={{ mt: 3, bgcolor: '#009624', '&:hover': { bgcolor: '#006014' } }}
+            size="large"
+          >
+            Selecciona tu BeSpace
+          </Button>
         </Container>
       </Box>
 
@@ -330,92 +413,4 @@ export default function Home() {
       </Box>
     </>
   )
-}
-
-/**
- * A reusable left/right feature section.
- * If `reverse` is true, image goes left and text right flips.
- */
-function Section({ title, image, features, reverse }) {
-  return (
-    <Grid
-      container
-      spacing={4}
-      direction={reverse ? 'row-reverse' : 'row'}
-      alignItems="center"
-    >
-      <Grid item xs={12} md={6}>
-        <Box
-          component="img"
-          src={image}
-          alt={title}
-          sx={{ width: '100%', borderRadius: 2 }}
-        />
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <Typography variant="h4" gutterBottom>
-          {title}
-        </Typography>
-        <List disablePadding>
-          {features.map((text) => (
-            <ListItem key={text} disableGutters>
-              <ListItemIcon>
-                <CheckCircleIcon color="primary" />
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </Grid>
-    </Grid>
-  )
-}
-
-function GoogleReviewsCarousel() {
-  const reviews = [
-    {
-      rating: 5,
-      text: 'Excelente servicio y atención. Muy recomendable.',
-      author: 'Ana G.'
-    },
-    {
-      rating: 5,
-      text: 'El mejor coworking para mi empresa. ¡Gracias BeWorking!',
-      author: 'Luis M.'
-    },
-    {
-      rating: 5,
-      text: 'Oficina virtual muy profesional y flexible.',
-      author: 'Carmen P.'
-    },
-    {
-      rating: 5,
-      text: 'Atención personalizada y rápida. Todo perfecto.',
-      author: 'Javier R.'
-    }
-  ];
-  const [index, setIndex] = useState(0);
-
-  const handlePrev = () => setIndex((prev) => (prev === 0 ? reviews.length - 1 : prev - 1));
-  const handleNext = () => setIndex((prev) => (prev === reviews.length - 1 ? 0 : prev + 1));
-
-  return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <Card variant="outlined" sx={{ width: 320, minHeight: 200, mb: 2 }}>
-        <CardContent>
-          <Typography>⭐️⭐️⭐️⭐️⭐️</Typography>
-          <Typography variant="body2" sx={{ mt: 2, mb: 2 }}>
-            “{reviews[index].text}”
-          </Typography>
-          <Typography variant="caption" color="text.secondary">
-            {reviews[index].author}
-          </Typography>
-        </CardContent>
-      </Card>
-      <Box sx={{ display: 'flex', gap: 2 }}>
-        <Button onClick={handlePrev} size="small" variant="outlined">Anterior</Button>
-        <Button onClick={handleNext} size="small" variant="outlined">Siguiente</Button>
-      </Box>
-    </Box>
-  );
 }
