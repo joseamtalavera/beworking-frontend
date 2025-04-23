@@ -8,24 +8,32 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
  */
 export default function PilarSection({ title, image, description, benefits = [], reverse }) {
   return (
-    <Grid container spacing={4} direction={reverse ? 'row-reverse' : 'row'} alignItems="center">
-      <Grid item xs={12} md={6} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <Grid container spacing={0} direction={reverse ? 'row-reverse' : 'row'} alignItems="stretch" sx={{ minHeight: 400 }}>
+      <Grid item xs={12} md={6} sx={{ p: 0 }}>
         <Box
-          component="img"
-          src={image}
-          alt={title}
           sx={{
             width: '100%',
-            height: 'auto',
-            maxWidth: '100%',
-            maxHeight: 320,
-            objectFit: 'contain',
-            borderRadius: 2,
-            boxShadow: 2,
+            height: '100%',
+            display: 'flex',
+            alignItems: 'stretch',
+            justifyContent: 'center',
+            overflow: 'hidden',
           }}
-        />
+        >
+          <Box
+            component="img"
+            src={image}
+            alt={title}
+            sx={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              display: 'block',
+            }}
+          />
+        </Box>
       </Grid>
-      <Grid item xs={12} md={6}>
+      <Grid item xs={12} md={6} sx={{ p: 4, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <Typography variant="h4" gutterBottom>{title}</Typography>
         {description && (
           <Typography variant="body1" sx={{ mb: 2 }}>{description}</Typography>

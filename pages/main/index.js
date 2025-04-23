@@ -36,6 +36,7 @@ import { GoogleReviewsCarousel } from '../../src/components/GoogleReviewsCarouse
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
 import PilarSection from '../../src/components/PilarSection';
 
+
 export default function Home() {
   // reusable feature list
   const features = (items) => (
@@ -205,54 +206,13 @@ export default function Home() {
 
       <Divider />
 
-      {/* Feature Sections */}
-     {/*  <Box sx={{ py: 8 }}>
-        <Container>
-          <PilarSection
-            title="On Demand (Puntos)"
-            image="/assets/ondemand.jpg"
-            features={[
-              'Punto 1 explicado',
-              'Punto 2 destacado',
-              'Punto 3 disponible',
-            ]}
-            reverse={false}
-          />
-
-          <Divider sx={{ my: 6 }} />
-
-          <PilarSection
-            title="Super App"
-            image="/assets/superapp.jpg"
-            features={[
-              'Funcionalidad A',
-              'Funcionalidad B',
-              'Funcionalidad C',
-            ]}
-            reverse={true}
-          />
-
-          <Divider sx={{ my: 6 }} />
-
-          <PilarSection
-            title="Comunidad"
-            image="/assets/comunidad.jpg"
-            features={[
-              'Acceso a eventos',
-              'Networking global',
-              'Beneficios exclusivos',
-            ]}
-            reverse={false}
-          />
-        </Container>
-      </Box> */}
-
 
 
 <Box sx={{ py: 8 }}>
+
   <PilarSection
     title="Domiciliación Fiscal y Social"
-    image="/Domiciliacion.png"
+    image="/pilar1_new.png"
     description="Te ofrecemos una dirección legal y fiscal en una ubicación premium en Málaga."
     benefits={[
       'Cumple con los requisitos legales y fiscales',
@@ -263,7 +223,7 @@ export default function Home() {
 
   <PilarSection
     title="Recepción de Paquetería y Correspondencia"
-    image="/assets/pilares/paquetes.svg"
+    image="/pilar2_new.png"
     description="Tu oficina siempre atendida: nosotros recibimos tu correo y paquetes."
     benefits={[
       'Notificación inmediata por email',
@@ -275,7 +235,7 @@ export default function Home() {
 
   <PilarSection
     title="Acceso al Network BeSpaces"
-    image="/assets/pilares/network.svg"
+    image="/pilar3_new.png"
     description="Forma parte de una comunidad profesional activa y conectada."
     benefits={[
       'Accede a más de 50 espacios flexibles',
@@ -286,7 +246,7 @@ export default function Home() {
 
   <PilarSection
     title="Uso gratuito de la Super App"
-    image="/assets/pilares/superapp.svg"
+    image="/pilar4_new.png"
     description="Herramientas de gestión empresarial incluidas en tu plan de oficina virtual."
     benefits={[
       'Gestión de documentos, clientes y facturas',
@@ -298,7 +258,7 @@ export default function Home() {
 
   <PilarSection
     title="Eventos y Networking Mensuales"
-    image="/assets/pilares/eventos.svg"
+    image="/pilar5_new.png"
     description="Participa en encuentros, talleres y cafés de negocios."
     benefits={[
       'Eventos presenciales en Málaga',
