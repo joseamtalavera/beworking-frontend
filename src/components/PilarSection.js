@@ -1,6 +1,5 @@
 import React from 'react';
-import { Grid, Box, Typography, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import { Grid, Box, Typography } from '@mui/material';
 
 /**
  * PilarSection: left side image, right side title, description, and benefits.
@@ -8,47 +7,32 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
  */
 export default function PilarSection({ title, image, description, benefits = [], reverse }) {
   return (
-    <Grid container spacing={0} direction={reverse ? 'row-reverse' : 'row'} alignItems="stretch" sx={{ minHeight: 400 }}>
-      <Grid item xs={12} md={6} sx={{ p: 0 }}>
+    <Grid container spacing={0} direction={reverse ? 'row-reverse' : 'row'} alignItems="center" justifyContent="center" sx={{ minHeight: 400 }}>
+      <Grid item xs={12} md={6} sx={{ p: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <Box
+          component="img"
+          src={image}
+          alt={title}
           sx={{
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            alignItems: 'stretch',
-            justifyContent: 'center',
-            overflow: 'hidden',
+            width: '80%',
+            height: 'auto',
+            maxHeight: 520,
+            objectFit: 'contain',
+            display: 'block',
           }}
-        >
-          <Box
-            component="img"
-            src={image}
-            alt={title}
-            sx={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              display: 'block',
-            }}
-          />
-        </Box>
+        />
       </Grid>
-      <Grid item xs={12} md={6} sx={{ p: 4, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-        <Typography variant="h4" gutterBottom>{title}</Typography>
+      <Grid item xs={12} md={6} sx={{ p: 4, pl: { md: 8 }, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', textAlign: 'left' }}>
+        <Typography variant="h3" gutterBottom sx={{ whiteSpace: 'normal', wordBreak: 'break-word', maxWidth: 420, lineHeight: 1.2 }}>
+          {title}
+        </Typography>
         {description && (
-          <Typography variant="body1" sx={{ mb: 2 }}>{description}</Typography>
+          <Typography variant="h5" sx={{ mb: 2, color: '#009624', textAlign: 'left', maxWidth: 520, whiteSpace: 'normal', wordBreak: 'break-word', lineHeight: 1.2 }}>{description}</Typography>
         )}
         {benefits.length > 0 && (
-          <List disablePadding>
-            {benefits.map((text) => (
-              <ListItem key={text} disableGutters>
-                <ListItemIcon>
-                  <CheckCircleIcon color="primary" />
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
+          <Typography variant="h5" sx={{ mt: 2, textAlign: 'left', maxWidth: 620, whiteSpace: 'normal', wordBreak: 'break-word', lineHeight: 1.5, color: '#757575' }}>
+            {benefits.join(' ')}
+          </Typography>
         )}
       </Grid>
     </Grid>

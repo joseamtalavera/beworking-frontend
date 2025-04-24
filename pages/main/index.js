@@ -85,20 +85,20 @@ export default function Home() {
       </HeroSection>
 
       {/* Plans */}
-      <Box sx={{ py: 8, textAlign: 'center' }}>
-        <Container maxWidth="md">
+      {/* <Box sx={{ py: 12, textAlign: 'center' }}>
+        <Container maxWidth="md"> */}
           {/* Section Title */}
-          <Typography variant="h2" align="center" gutterBottom>
+          {/* <Typography variant="h2" align="center" gutterBottom style={{ fontWeight: 400 }}>
             Nuestros 5 Pilares
-          </Typography>
+          </Typography> */}
 
           {/* Intro Text */}
-          <Typography
-            variant="body1"
+          {/* <Typography
+            variant="h5"
             sx={{
               color: 'text.primary',
               textAlign: 'center',
-              fontSize: '1.1rem',
+              //fontSize: '1.1rem',
               mb: 8, // increased from 4 to 6
               lineHeight: 1.4,
             }}
@@ -113,10 +113,10 @@ export default function Home() {
               5 pilares
             </Box>
             .
-          </Typography>
+          </Typography> */}
 
           {/* First row: 4 features */}
-          <Grid container spacing={10} justifyContent="center" sx={{ mt: 8 }}>
+         {/*  <Grid container spacing={10} justifyContent="center" sx={{ mt: 8 }}>
             {[
               {
                 icon: 'pilar1.png',
@@ -161,10 +161,10 @@ export default function Home() {
                 </Box>
               </Grid>
             ))}
-          </Grid>
+          </Grid> */}
 
           {/* Second row: 1 feature (pilar5) */}
-          <Grid container spacing={10} justifyContent="center" sx={{ mt: 4 }}>
+          {/* <Grid container spacing={10} justifyContent="center" sx={{ mt: 4 }}>
             {[
               {
                 icon: 'pilar4.png',
@@ -204,75 +204,91 @@ export default function Home() {
         </Container>
       </Box>
 
-      <Divider />
+      <Divider sx={{ my: 8 }} /> */}
 
+      <Box sx={{ py: 6 }}>
+      <Typography variant="h5" align="center" sx={{ mb: 3, fontWeight: 400, mt: 12, color: '#009624' }}>
+          Nuestros Beneficos
+        </Typography>
+        <Typography variant="h2" align="center" sx={{ mb: 3, fontWeight: 400, mt: 3 }}>
+          Nuestra Fórmula: 5 Pilares de BeWorking
+        </Typography>
+        <Typography variant="h5" align="center" sx={{ mb: 16, maxWidth: 700, mx: 'auto', color: 'text.secondary' }}>
+          Nuestra modelo de Oficina Virtual se apoya en 5 pilares fundamentales que te ofrecen mucho más que una simple dirección. Descubre cómo cada uno de ellos impulsa tu negocio.¡Conócelos todos y lleva tu empresa al siguiente nivel!
+        </Typography>
 
+        <PilarSection
+          title="Domiciliación Fiscal y Social"
+          image="/pilar1final.png"
+          description="Te ofrecemos una dirección legal y fiscal en multiples ubicaciones ."
+          benefits={[
+            'Cumple con los requisitos legales y fiscales. ',
+            'Ubicación visible en Google Maps. ',
+            'Manten tu privacidad sin necesidad de usar tu dirección personal.',
+          ]}
+        />
 
-<Box sx={{ py: 8 }}>
+        <Box sx={{ height: { xs: 120, md: 200 } }} />
 
-  <PilarSection
-    title="Domiciliación Fiscal y Social"
-    image="/pilar1_new.png"
-    description="Te ofrecemos una dirección legal y fiscal en una ubicación premium en Málaga."
-    benefits={[
-      'Cumple con los requisitos legales y fiscales',
-      'Ubicación visible en Google Maps',
-      'Ideal para autónomos y startups',
-    ]}
-  />
+        <PilarSection
+          title="Recepción de Paquetería y Correspondencia"
+          image="/pilar2final.png"
+          description="Tu correspondenia siempre atendida: nosotros recibimos tu correo y paquetes."
+          benefits={[
+            'Tan pronto recibimos tu correo, te lo notificacmos por email o WhatsApp.',
+            'Escaneado gratuito de cartas y archivo en la Super App.',
+            'Recogida de paquetes en horario amplio.',
+          ]}
+          reverse
+        />
 
-  <PilarSection
-    title="Recepción de Paquetería y Correspondencia"
-    image="/pilar2_new.png"
-    description="Tu oficina siempre atendida: nosotros recibimos tu correo y paquetes."
-    benefits={[
-      'Notificación inmediata por email',
-      'Escaneado opcional de cartas importantes',
-      'Recogida en horario amplio',
-    ]}
-    reverse
-  />
+        <Box sx={{ height: { xs: 120, md: 200 } }} />
 
-  <PilarSection
-    title="Acceso al Network BeSpaces"
-    image="/pilar3_new.png"
-    description="Forma parte de una comunidad profesional activa y conectada."
-    benefits={[
-      'Accede a más de 50 espacios flexibles',
-      'Conecta con emprendedores y freelancers',
-      'Promociona tus servicios en la comunidad',
-    ]}
-  />
+        <PilarSection
+          title="Acceso al Network de BeSpaces"
+          image="/pilar3final.png"
+          description="Usa de forma gratuita nuestra red de espacios."
+          benefits={[
+            'No solo te ofrecemos el servio virtual, si no también el espacio físico cuando lo necesites.',
+            'Con el benefico de que todos estos espacios pertencen a BeWorking.',
+            'Acceso a espacios de trabajo, salas de reuniones y eventos.',
+            'Aprovecha y conecta con emprendedores y freelancers',
+          ]}
+        />
 
-  <PilarSection
-    title="Uso gratuito de la Super App"
-    image="/pilar4_new.png"
-    description="Herramientas de gestión empresarial incluidas en tu plan de oficina virtual."
-    benefits={[
-      'Gestión de documentos, clientes y facturas',
-      'Soporte por chat y correo',
-      'Acceso desde cualquier dispositivo',
-    ]}
-    reverse
-  />
+        <Box sx={{ height: { xs: 120, md: 200 } }} />
 
-  <PilarSection
-    title="Eventos y Networking Mensuales"
-    image="/pilar5_new.png"
-    description="Participa en encuentros, talleres y cafés de negocios."
-    benefits={[
-      'Eventos presenciales en Málaga',
-      'Sesiones de formación y pitching',
-      'Crecimiento colaborativo con otros miembros',
-    ]}
-  />
-</Box>
+        <PilarSection
+          title="Uso gratuito de la Super App"
+          image="/pilar4final.png"
+          description=" Todas la herramientas de gestión empresarial incluidas en tu plan de Oficina Virtual."
+          benefits={[
+            'Contactos, Mailbox donde archivamos todo tu correspondenicia, Contabilidad, Chat para conectar con otros Beworkers, ',
+            'y un motor para hacer reservas gratuitas en nuestros espacios.',
+            'Además tendrás acceso a modulos personalizados y a toda la red de Partners de servicios de BeWorking.',
+            'Acceso desde cualquier dispositivo',
+          ]}
+          reverse
+        />
 
+        <Box sx={{ height: { xs: 120, md: 200 } }} />
 
-      <Divider />
+        <PilarSection
+          title="Eventos y Networking Mensuales"
+          image="/pilar5final.png"
+          description="Participa en encuentros, talleres y cafés de negocios."
+          benefits={[
+            'Cada mes, los gestores de los BeSpaces organizarán eventos presenciales. ',
+            'De esta forma podrás conocer a otros Beworkers y crear sinergias.',
+            'Forma parte de una comunidad activa y en crecimiento.',
+          ]}
+        />
+      </Box>
+
+      <Divider sx={{ my: 8 }} />
 
       {/* Pricing Banner */}
-      <Box sx={{ py: 8, textAlign: 'center', bgcolor: '#fff' }}>
+      <Box sx={{ py: 12, textAlign: 'center', bgcolor: '#fff' }}>
         <Container maxWidth="md">
           <Typography 
             variant="h2" gutterBottom>
@@ -298,10 +314,10 @@ export default function Home() {
         </Container>
       </Box>
 
-      <Divider />
+      <Divider sx={{ my: 8 }} />
 
       {/* Google Reviews Carousel */}
-      <Box sx={{ py: 8 }}>
+      <Box sx={{ py: 12 }}>
         <Container>
           <Typography variant="h4" align="center" gutterBottom>
             Google Reviews
@@ -310,10 +326,10 @@ export default function Home() {
         </Container>
       </Box>
 
-      <Divider />
+      <Divider sx={{ my: 8 }} />
 
       {/* Location Map Placeholder */}
-      <Box sx={{ py: 8, textAlign: 'center' }}>
+      <Box sx={{ py: 12, textAlign: 'center' }}>
         <Container>
           <Typography variant="h4" gutterBottom>
             Ubicación de BeSpaces
@@ -352,7 +368,7 @@ export default function Home() {
         </Container>
       </Box>
 
-      <Divider />
+      <Divider sx={{ my: 8 }} />
 
       {/* Footer */}
       <Box component="footer" sx={{ py: 4, bgcolor: '#009624', color: '#fff' }}>
