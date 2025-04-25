@@ -8,7 +8,6 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  Button,
   useTheme,
 } from '@mui/material'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
@@ -20,6 +19,7 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import SendIcon from '@mui/icons-material/Send'
 import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk'
 import GppGoodIcon from '@mui/icons-material/GppGood'
+import GreenButton from './GreenButton'
 
 export function PricingCard() {
   const theme = useTheme()
@@ -35,8 +35,8 @@ export function PricingCard() {
   ]
 
   return (
-    <Box sx={{ maxWidth: 380, mx: 'auto' }}>
-      <Card elevation={3} sx={{ position: 'relative' }}>
+    <Box sx={{ maxWidth: 480, mx: 'auto' }}>
+      <Card elevation={3} sx={{ position: 'relative', bgcolor: 'rgba(255, 255, 255, 0.6)' }}>
         {/* Ribbon */}
         <Box
           sx={{
@@ -63,11 +63,11 @@ export function PricingCard() {
         </Box>
         <CardContent sx={{ textAlign: 'center', pt: 6, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           {/* Title & Price */}
-          <Typography variant="h6" gutterBottom align="center">
+          <Typography variant="h4" gutterBottom align="center">
             Oficina Virtual
           </Typography>
           <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'baseline' }}>
-            <Typography variant="h3" component="span" sx={{ fontWeight: 'bold' }}>
+            <Typography variant="h2" component="span" sx={{ fontWeight: 'bold' }}>
               €15
             </Typography>
             <Typography variant="subtitle1" component="span" sx={{ ml: 1 }}>
@@ -80,11 +80,11 @@ export function PricingCard() {
             {features.map(({ icon: Icon, text }) => (
               <ListItem key={text} disableGutters sx={{ py: 0.5, alignItems: 'center' }}>
                 <ListItemIcon sx={{ minWidth: '40px', color: theme.palette.success.main, display: 'flex', alignItems: 'center', justifyContent: 'center', ml: 1 }}>
-                  <Icon fontSize="small" />
+                  <Icon fontSize="medium" />
                 </ListItemIcon>
                 <ListItemText
                   primary={text}
-                  primaryTypographyProps={{ variant: 'body2' }}
+                  primaryTypographyProps={{ variant: 'body1' }}
                   sx={{ display: 'flex', alignItems: 'center' }}
                 />
               </ListItem>
@@ -100,19 +100,7 @@ export function PricingCard() {
           /> */}
 
           {/* CTA Button */}
-          <Button
-            variant="contained"
-            size="large"
-            fullWidth
-            startIcon={<SendIcon />}
-            sx={{
-              mt: 3,
-              bgcolor: '#009624',
-              '&:hover': { bgcolor: theme.palette.success.dark },
-            }}
-          >
-            Contacta aquí
-          </Button>
+          <GreenButton />
         </CardContent>
       </Card>
     </Box>

@@ -30,9 +30,13 @@ export default function PilarSection({ title, image, description, benefits = [],
           <Typography variant="h5" sx={{ mb: 2, color: '#009624', textAlign: 'left', maxWidth: 520, whiteSpace: 'normal', wordBreak: 'break-word', lineHeight: 1.2 }}>{description}</Typography>
         )}
         {benefits.length > 0 && (
-          <Typography variant="h5" sx={{ mt: 2, textAlign: 'left', maxWidth: 620, whiteSpace: 'normal', wordBreak: 'break-word', lineHeight: 1.5, color: '#757575' }}>
-            {benefits.join(' ')}
-          </Typography>
+          <Box sx={{ mt: 2, textAlign: 'left', maxWidth: 620, whiteSpace: 'normal', wordBreak: 'break-word', lineHeight: 1.5, color: '#757575' }}>
+            {benefits.map((benefit, index) => (
+              <Typography key={index} variant="h5" component="span" sx={{ display: 'block', mb: 1 }}>
+                {benefit}
+              </Typography>
+            ))}
+          </Box>
         )}
       </Grid>
     </Grid>
