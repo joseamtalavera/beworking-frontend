@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, useTheme } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 
-export default function GreenButton({ label = 'Registrate', sx = {} }) {
+export default function GreenButton({ label = 'Registrate', sx = {}, onClick }) {
   const theme = useTheme();
 
   return (
@@ -11,6 +11,7 @@ export default function GreenButton({ label = 'Registrate', sx = {} }) {
       size="large"
       fullWidth
       startIcon={<SendIcon />}
+      onClick={onClick}
       sx={{
         mt: 3,
         bgcolor: '#009624',

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Typography, IconButton } from '@mui/material';
+import { Box, Typography, IconButton, Dialog, Grid } from '@mui/material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import GreenButton from './GreenButton';
@@ -25,14 +25,27 @@ const images = [
 ];
 
 export default function GallerySection() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(null); // Start as null
+  const [open, setOpen] = useState(false);
 
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    if (currentIndex !== null) {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }
   };
 
   const handlePrev = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+    if (currentIndex !== null) {
+      setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+    }
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   const visibleImages = [
@@ -63,12 +76,14 @@ export default function GallerySection() {
               component="img"
               src={src}
               alt={`Gallery image ${index + 1}`}
+              onClick={() => setCurrentIndex(index)}
               sx={{
                 width: '20%',
                 height: 'auto',
                 borderRadius: 2,
                 boxShadow: 2,
                 flexShrink: 0,
+                cursor: 'pointer',
               }}
             />
           ))}
@@ -80,8 +95,87 @@ export default function GallerySection() {
       </Box>
 
       <Box sx={{ mt: 4 }}>
-        <GreenButton label="Ver todas las imágenes" />
+        <GreenButton label="Ver todas las imágenes" onClick={handleOpen} />
+        <Dialog open={open} onClose={handleClose} fullWidth maxWidth="lg">
+          <Box sx={{ p: 4, position: 'relative' }}>
+            <IconButton
+              onClick={handleClose}
+              sx={{ position: 'absolute', top: 16, right: 16, color: 'grey.500' }}
+            >
+              ✕
+            </IconButton>
+            <Grid container spacing={1} justifyContent="center" alignItems="center">
+              {images.map((src, index) => (
+                <Grid item xs={12} sm={6} md={3} key={index} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <Box
+                    component="img"
+                    src={src}
+                    alt={`Gallery image ${index + 1}`}
+                    onClick={() => setCurrentIndex(index)}
+                    sx={{
+                      width: '100%',
+                      height: 160,
+                      objectFit: 'cover',
+                      borderRadius: 1,
+                      boxShadow: 1,
+                      display: 'block',
+                      mx: 'auto',
+                      cursor: 'pointer',
+                      transition: 'transform 0.2s',
+                      '&:hover': {
+                        transform: 'scale(1.1)',
+                      },
+                    }}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          </Box>
+        </Dialog>
       </Box>
+
+      {currentIndex !== null && (
+        <Box sx={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          bgcolor: 'rgba(0,0,0,0.85)',
+          zIndex: 1401,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexDirection: 'column',
+        }}>
+          <IconButton
+            onClick={() => setCurrentIndex(null)}
+            sx={{ position: 'absolute', top: 24, right: 24, color: 'white', zIndex: 2 }}
+          >
+            ✕
+          </IconButton>
+          <Box
+            component="img"
+            src={images[currentIndex]}
+            alt={`Gallery image ${currentIndex + 1}`}
+            sx={{
+              maxWidth: '90vw',
+              maxHeight: '80vh',
+              borderRadius: 2,
+              boxShadow: 4,
+              mb: 2,
+            }}
+          />
+          <Box sx={{ display: 'flex', justifyContent: 'center', gap: 4 }}>
+            <IconButton onClick={handlePrev} sx={{ color: '#009624', fontSize: '2rem' }}>
+              <ArrowBackIosIcon fontSize="inherit" />
+            </IconButton>
+            <IconButton onClick={handleNext} sx={{ color: '#009624', fontSize: '2rem' }}>
+              <ArrowForwardIosIcon fontSize="inherit" />
+            </IconButton>
+          </Box>
+        </Box>
+      )}
     </Box>
   );
 }

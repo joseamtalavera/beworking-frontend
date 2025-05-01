@@ -17,25 +17,23 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { MainSection, HeroContent } from '../../src/styles/indexStyles';
 import { PricingCard } from '../../src/components/PricingCard';
 import { GoogleReviewsCarousel } from '../../src/components/GoogleReviewsCarousel';
-import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import PilarSection from '../../src/components/PilarSection';
 import GreenButton from '../../src/components/GreenButton';
 import GallerySection from '../../src/components/GallerySection';
 
 export default function Home() {
-  // reusable feature list
-  const features = (items) => (
-    <List>
-      {items.map((text) => (
-        <ListItem key={text} disableGutters>
-          <ListItemIcon>
-            <CheckCircleIcon color="primary" />
-          </ListItemIcon>
-          <ListItemText primary={text} />
-        </ListItem>
-      ))}
-    </List>
-  )
+
+  // Orange pointer icon for map markers
+  const orangePin = {
+    path: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z',
+    fillColor: '#FFA500',
+    fillOpacity: 1,
+    strokeColor: '#FFFFFF',
+    strokeWeight: 2,
+    scale: 1.5,
+    anchor: { x: 12, y: 24 },
+  };
 
   return (
     <>
@@ -151,8 +149,6 @@ export default function Home() {
         </Box>
       </Box>
 
-      {/* <Divider sx={{ my: 8 }} /> */}
-
       {/* Pricing Banner */}
       <Box
         sx={{
@@ -192,24 +188,20 @@ export default function Home() {
           </Typography>
           {/* Pricing Card injected here */}
           <PricingCard />
-          {/* <Button variant="contained" sx={{ bgcolor: '#009624', '&:hover': { bgcolor: '#006014' } }} size="large">
-            Reserva ahora
-          </Button> */}
         </Container>
       </Box>
 
-      {/* <Divider sx={{ my: 8 }} /> */}
-
       {/* Gallery Section */}
       <GallerySection />
-
-      {/* <Divider sx={{ my: 8 }} /> */}
 
       {/* Google Reviews Carousel */}
       <Box sx={{ py: 12 }}>
         <Container>
           <Typography variant="h2" align="center" gutterBottom sx={{ mb: 3, fontWeight: 400, mt: 3 }}>
             Google Reviews
+          </Typography>
+          <Typography variant="h5" align="center" sx={{ mb: 6, maxWidth: 900, mx: 'auto', color: 'text.secondary' }}>
+            Descubre lo que opinan nuestros clientes y cómo BeWorking ha impulsado sus negocios. ¡Tu experiencia puede ser la próxima historia de éxito!
           </Typography>
           <GoogleReviewsCarousel />
         </Container>
@@ -218,10 +210,13 @@ export default function Home() {
       <Divider sx={{ my: 8 }} />
 
       {/* Location Map Placeholder */}
-      <Box sx={{ py: 12, textAlign: 'center' }}>
+      <Box sx={{ py: 4, textAlign: 'center' }}>
         <Container>
-          <Typography variant="h2" gutterBottom sx={{ mb: 3, fontWeight: 400, mt: 3 }}>
+          <Typography variant="h2" gutterBottom sx={{ mb: 3, fontWeight: 400, mt: 1 }}>
             Ubicación de BeSpaces
+          </Typography>
+          <Typography variant="h5" align="center" sx={{ mb: 6, maxWidth: 900, mx: 'auto', color: 'text.secondary' }}>
+            Encuentra tu BeSpace en las mejores ubicaciones de España. Consulta el mapa para ver dónde puedes disfrutar de todos nuestros servicios y formar parte de la comunidad BeWorking.
           </Typography>
           <Box
             sx={{
@@ -244,20 +239,75 @@ export default function Home() {
                   disableDefaultUI: true,
                   zoomControl: true,
                 }}
-              />
+              >
+                <Marker position={{ lat: 36.7213, lng: -4.4214 }} icon={orangePin} /> {/* Malaga */}
+                <Marker position={{ lat: 37.3886, lng: -5.9823 }} icon={orangePin} /> {/* Sevilla */}
+                <Marker position={{ lat: 39.4699, lng: -0.3763 }} icon={orangePin} /> {/* Valencia */}
+                <Marker position={{ lat: 41.6488, lng: -0.8891 }} icon={orangePin} /> {/* Zaragoza */}
+                <Marker position={{ lat: 43.2630, lng: -2.9350 }} icon={orangePin} /> {/* Bilbao */}
+                <Marker position={{ lat: 42.2406, lng: -8.7207 }} icon={orangePin} /> {/* Vigo */}
+                <Marker position={{ lat: 39.5696, lng: 2.6502 }} icon={orangePin} /> {/* Palma de Mallorca */}
+                <Marker position={{ lat: 28.1235, lng: -15.4363 }} icon={orangePin} /> {/* Las Palmas de Gran Canaria */}
+                <Marker position={{ lat: 41.3851, lng: 2.1734 }} icon={orangePin} /> {/* Barcelona */}
+                <Marker position={{ lat: 40.4168, lng: -3.7038 }} icon={orangePin} /> {/* Madrid */}
+              </GoogleMap>
             </LoadScript>
           </Box>
-          <Button
-            variant="contained"
-            sx={{ mt: 3, bgcolor: '#009624', '&:hover': { bgcolor: '#006014' } }}
-            size="large"
-          >
-            Selecciona tu BeSpace
-          </Button>
+          <Box sx={{ mt: 4, textAlign: 'center' }}>
+          <GreenButton label="Selecciona tu BeSpace" />
+        </Box>
         </Container>
       </Box>
 
       <Divider sx={{ my: 8 }} />
+
+      {/* Interviews Section */}
+      <Box sx={{ py: 8, textAlign: 'center', bgcolor: '#fff' }}>
+        <Container>
+          <Typography variant="h2" align="center" sx={{ mb: 3, fontWeight: 400, mt: 3 }}>
+            Entrevistas a nuestros Coworkers
+          </Typography>
+          <Typography variant="h5" align="center" sx={{ mb: 6, maxWidth: 900, mx: 'auto', color: 'text.secondary' }}>
+            Descubre las historias y experiencias de los profesionales que forman parte de la comunidad BeWorking.
+          </Typography>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 4 }}>
+            {/* Example interview cards, replace with real data/images as needed */}
+            <Box sx={{ width: 280, textAlign: 'center', bgcolor: '#fafafa', borderRadius: 3, boxShadow: 2, p: 3 }}>
+              <img src="/avatars/marta.jpg" alt="Marta" style={{ width: 120, height: 120, borderRadius: '50%', objectFit: 'cover', marginBottom: 16 }} />
+              <Typography variant="h6" sx={{ mb: 1 }}>Marta García</Typography>
+              <Typography variant="subtitle2" sx={{ mb: 1, color: '#FFA500' }}>Marketing Digital</Typography>
+              <Typography variant="body2" color="text.secondary">
+                "BeWorking me ha permitido crecer profesionalmente y conectar con otros emprendedores. La flexibilidad y el ambiente son únicos."
+              </Typography>
+            </Box>
+            <Box sx={{ width: 280, textAlign: 'center', bgcolor: '#fafafa', borderRadius: 3, boxShadow: 2, p: 3 }}>
+              <img src="/avatars/luis.jpg" alt="Luis" style={{ width: 120, height: 120, borderRadius: '50%', objectFit: 'cover', marginBottom: 16 }} />
+              <Typography variant="h6" sx={{ mb: 1 }}>Luis Martínez</Typography>
+              <Typography variant="subtitle2" sx={{ mb: 1, color: '#FFA500' }}>Desarrollador Web</Typography>
+              <Typography variant="body2" color="text.secondary">
+                "La comunidad de BeWorking es muy activa y siempre hay oportunidades para colaborar. Recomiendo este espacio a todos los freelancers."
+              </Typography>
+            </Box>
+            <Box sx={{ width: 280, textAlign: 'center', bgcolor: '#fafafa', borderRadius: 3, boxShadow: 2, p: 3 }}>
+              <img src="/avatars/carmen.jpg" alt="Carmen" style={{ width: 120, height: 120, borderRadius: '50%', objectFit: 'cover', marginBottom: 16 }} />
+              <Typography variant="h6" sx={{ mb: 1 }}>Carmen Pérez</Typography>
+              <Typography variant="subtitle2" sx={{ mb: 1, color: '#FFA500' }}>Administración</Typography>
+              <Typography variant="body2" color="text.secondary">
+                "Gracias a BeWorking he encontrado el equilibrio entre mi vida personal y profesional. El soporte del equipo es excelente."
+              </Typography>
+            </Box>
+            <Box sx={{ width: 280, textAlign: 'center', bgcolor: '#fafafa', borderRadius: 3, boxShadow: 2, p: 3 }}>
+              <img src="/avatars/javier.jpg" alt="Javier" style={{ width: 120, height: 120, borderRadius: '50%', objectFit: 'cover', marginBottom: 16 }} />
+              <Typography variant="h6" sx={{ mb: 1 }}>Javier Ruiz</Typography>
+              <Typography variant="subtitle2" sx={{ mb: 1, color: '#FFA500' }}>Ventas</Typography>
+              <Typography variant="body2" color="text.secondary">
+                "El networking y los eventos mensuales me han ayudado a ampliar mi red de contactos y a conseguir nuevos clientes."
+              </Typography>
+            </Box>
+            {/* Add more interview cards as needed */}
+          </Box>
+        </Container>
+      </Box>
 
       {/* Footer */}
       <Box component="footer" sx={{ py: 4, bgcolor: '#009624', color: '#fff' }}>
