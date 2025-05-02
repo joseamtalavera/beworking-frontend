@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { Box, Container } from '@mui/material';
+import { Box, Container, Toolbar, Button } from '@mui/material';
 
 export const MainSection = styled(Box)(({ theme }) => ({
   position: 'relative',
@@ -46,10 +46,24 @@ export const FeaturesSection = styled(Box)(({ theme }) => ({
 }));
 
 export const PricingBanner = styled(Box)(({ theme }) => ({
-  paddingTop: theme.spacing(8),
-  paddingBottom: theme.spacing(8),
+  paddingTop: theme.spacing(12),
+  paddingBottom: theme.spacing(12),
   textAlign: 'center',
-  backgroundColor: '#e0f7fa',
+  backgroundColor: '#fff',
+  backgroundImage: 'url(/BeWorking.JPG)',
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  position: 'relative',
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'rgba(255, 152, 0, 0.5)',
+    zIndex: 1,
+  },
 }));
 
 export const ReviewsSection = styled(Box)(({ theme }) => ({
@@ -82,4 +96,24 @@ export const Footer = styled(Box)(({ theme }) => ({
 export const FooterContainer = styled(Container)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'space-between',
+}));
+
+export const MenuBox = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  gap: theme.spacing(3),
+}));
+
+export const SectionBox = styled(Box)(({ theme }) => ({
+  paddingTop: theme.spacing(6),
+  paddingBottom: theme.spacing(6),
+}));
+
+export const HeaderToolbar = styled(Toolbar)({
+  justifyContent: 'space-between',
+});
+
+export const MenuButton = styled(Button)(({ theme }) => ({
+  textTransform: 'none',
+  color: theme.palette.text.secondary,
+  fontSize: '1.1rem',
 }));
