@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, useTheme } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 
-export default function GreenButton({ label = 'Registrate', sx = {}, onClick }) {
+export default function GreenButton({ label = 'Activa tu oficina virtual', sx = {}, onClick }) {
   const theme = useTheme();
 
   return (

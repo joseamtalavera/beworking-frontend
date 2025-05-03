@@ -1,6 +1,7 @@
 import { styled } from '@mui/material/styles';
 import { Box, Container, Toolbar, Button } from '@mui/material';
 
+// Main section background
 export const MainSection = styled(Box)(({ theme }) => ({
   position: 'relative',
   paddingTop: theme.spacing(8),
@@ -26,7 +27,8 @@ export const MainSection = styled(Box)(({ theme }) => ({
   },
 }));
 
-export const HeroContent = styled(Container)(({ theme }) => ({
+// Content inside main section
+export const StartContent = styled(Container)(({ theme }) => ({
   position: 'relative',
   zIndex: 2,
   color: '#fff',
@@ -35,16 +37,31 @@ export const HeroContent = styled(Container)(({ theme }) => ({
   alignItems: 'center',
 }));
 
-export const PlansSection = styled(Box)(({ theme }) => ({
-  paddingTop: theme.spacing(8),
-  paddingBottom: theme.spacing(8),
+// Header toolbar
+export const HeaderToolbar = styled(Toolbar)({
+  justifyContent: 'space-between',
+});
+
+// Menu box in header
+export const MenuBox = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  gap: theme.spacing(3),
 }));
 
-export const FeaturesSection = styled(Box)(({ theme }) => ({
-  paddingTop: theme.spacing(8),
-  paddingBottom: theme.spacing(8),
+// Menu button in header
+export const MenuButton = styled(Button)(({ theme }) => ({
+  textTransform: 'none',
+  color: theme.palette.text.secondary,
+  fontSize: '1.1rem',
 }));
 
+// Section wrapper (for pilares, etc)
+export const SectionBox = styled(Box)(({ theme }) => ({
+  paddingTop: theme.spacing(6),
+  paddingBottom: theme.spacing(6),
+}));
+
+// Pricing banner
 export const PricingBanner = styled(Box)(({ theme }) => ({
   paddingTop: theme.spacing(12),
   paddingBottom: theme.spacing(12),
@@ -64,6 +81,17 @@ export const PricingBanner = styled(Box)(({ theme }) => ({
     backgroundColor: 'rgba(255, 152, 0, 0.5)',
     zIndex: 1,
   },
+}));
+
+// The rest of the styled components, not directly used in index.js, are left below for other pages/components
+export const PlansSection = styled(Box)(({ theme }) => ({
+  paddingTop: theme.spacing(8),
+  paddingBottom: theme.spacing(8),
+}));
+
+export const FeaturesSection = styled(Box)(({ theme }) => ({
+  paddingTop: theme.spacing(8),
+  paddingBottom: theme.spacing(8),
 }));
 
 export const ReviewsSection = styled(Box)(({ theme }) => ({
@@ -96,24 +124,4 @@ export const Footer = styled(Box)(({ theme }) => ({
 export const FooterContainer = styled(Container)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'space-between',
-}));
-
-export const MenuBox = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  gap: theme.spacing(3),
-}));
-
-export const SectionBox = styled(Box)(({ theme }) => ({
-  paddingTop: theme.spacing(6),
-  paddingBottom: theme.spacing(6),
-}));
-
-export const HeaderToolbar = styled(Toolbar)({
-  justifyContent: 'space-between',
-});
-
-export const MenuButton = styled(Button)(({ theme }) => ({
-  textTransform: 'none',
-  color: theme.palette.text.secondary,
-  fontSize: '1.1rem',
 }));

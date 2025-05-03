@@ -8,10 +8,12 @@ import {
   Container,
   Divider,
   Link,
+  Grid,
+  TextField,
 } from '@mui/material';
 import { 
   MainSection, 
-  HeroContent, 
+  StartContent, 
   MenuBox, 
   SectionBox, 
   PricingBanner, 
@@ -30,6 +32,8 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import YouTubeIcon from '@mui/icons-material/YouTube';
+import ModernContactSection from '../src/components/ModernContactSection';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
 export default function Home() {
 
@@ -63,17 +67,17 @@ export default function Home() {
 
       {/* Main */}
       <MainSection>
-        <HeroContent maxWidth="md">
+        <StartContent maxWidth="md">
           <Typography variant="h1" component="h1" gutterBottom>
-            Oficina Virtual
+          Tu Oficina Virtual por 15 €/mes
           </Typography>
           <Typography variant="h3" gutterBottom>
-            Transformamos tu Oficina Fisica en una Oficina Virtual
+            Dirección para tu Empresa, Recogida de Paquetería y acceso a Espacios de Trabajo.
           </Typography>
           <Box sx={{ maxWidth: 480, width: '100%', mx: 'auto' }}>
-            <GreenButton label="Contacta" />
+            <GreenButton label="Solicita tu oficina virtual" />
           </Box>
-        </HeroContent>
+        </StartContent>
       </MainSection>
 
       {/* Pilares section */}
@@ -91,7 +95,7 @@ export default function Home() {
 
         <PilarSection
           title="Domiciliación Fiscal y Social"
-          image="/pilar1final.png"
+          image="/pilar1.2final.png"
           description="Te ofrecemos una dirección legal y fiscal en multiples ubicaciones ."
           benefits={[
             'Cumple con los requisitos legales y fiscales. ',
@@ -99,24 +103,25 @@ export default function Home() {
           ]}
         />
 
+        <Box sx={{ bgcolor: '#f9f9f9' }}>
+          <Box sx={{ height: { xs: 120, md: 200 } }} />
+          <PilarSection
+            title="Recepción de Paquetería y Correspondencia"
+            image="/pilar2final.png"
+            description="Tu correspondenia siempre atendida: nosotros recibimos tu correo y paquetes."
+            benefits={[
+              <>Tan pronto recibimos tu correo, te lo notificamos por email o <Box component="span" sx={{ fontWeight: 'bold', color: 'black' }}>WhatsApp</Box>.</>,
+              <>Escaneado gratuito de cartas y archivo en la <Box component="span" sx={{ fontWeight: 'bold', color: 'black' }}>SuperApp</Box>.</>,
+              'Recogida de paquetes en horario amplio.',
+            ]}
+            reverse
+          />
+        </Box>
+
         <Box sx={{ height: { xs: 120, md: 200 } }} />
 
         <PilarSection
-          title="Recepción de Paquetería y Correspondencia"
-          image="/pilar2final.png"
-          description="Tu correspondenia siempre atendida: nosotros recibimos tu correo y paquetes."
-          benefits={[
-            <>Tan pronto recibimos tu correo, te lo notificamos por email o <Box component="span" sx={{ fontWeight: 'bold', color: 'black' }}>WhatsApp</Box>.</>,
-            <>Escaneado gratuito de cartas y archivo en la <Box component="span" sx={{ fontWeight: 'bold', color: 'black' }}>SuperApp</Box>.</>,
-            'Recogida de paquetes en horario amplio.',
-          ]}
-          reverse
-        />
-
-        <Box sx={{ height: { xs: 120, md: 200 } }} />
-
-        <PilarSection
-          title="Acceso al Network de BeSpaces"
+          title="Accede a nuestra red de espacios físicos BeSpaces"
           image="/pilar3final.png"
           description="Usa de forma gratuita nuestra red de espacios de trabajo."
           benefits={[
@@ -126,20 +131,21 @@ export default function Home() {
           ]}
         />
 
-        <Box sx={{ height: { xs: 120, md: 200 } }} />
-
-        <PilarSection
-          title="Uso gratuito de la SuperApp"
-          image="/pilar4final.png"
-          description=" Todas la herramientas de gestión empresarial incluidas en tu plan de Oficina Virtual."
-          benefits={[
-            <>Contactos, <Box component="span" sx={{ fontWeight: 'bold', color: 'black' }}>MailBox</Box> donde archivamos todo tu correspondenicia, Contabilidad, Chat para conectar con otros Beworkers.</>,
-            <>Además dispones de un motor  <Box component="span" sx={{ fontWeight: 'bold', color: 'black' }}>Reservas Gratuitas</Box> para hacer uso de nuestros espacios.</>,
-            <>Y con la posibilidad de crear modulos personalizados y usar toda la <Box component="span" sx={{ fontWeight: 'bold', color: 'black' }}>Red de Partners</Box> de servicios de BeWorking.</>,
-            'Acceso disponible desde cualquier dispositivo.',
-          ]}
-          reverse
-        />
+        <Box sx={{ bgcolor: '#f9f9f9' }}>
+          <Box sx={{ height: { xs: 120, md: 200 } }} />
+          <PilarSection
+            title="Uso gratuito de la SuperApp"
+            image="/pilar4.1final.png"
+            description=" Todas la herramientas de gestión empresarial incluidas en tu plan de Oficina Virtual."
+            benefits={[
+              <>Contactos, <Box component="span" sx={{ fontWeight: 'bold', color: 'black' }}>MailBox</Box> donde archivamos todo tu correspondenicia, Contabilidad, Chat para conectar con otros Beworkers.</>,
+              <>Además dispones de un motor  <Box component="span" sx={{ fontWeight: 'bold', color: 'black' }}>Reservas Gratuitas</Box> para hacer uso de nuestros espacios.</>,
+              <>Y con la posibilidad de crear modulos personalizados y usar toda la <Box component="span" sx={{ fontWeight: 'bold', color: 'black' }}>Red de Partners</Box> de servicios de BeWorking.</>,
+              'Acceso disponible desde cualquier dispositivo.',
+            ]}
+            reverse
+          />
+        </Box>
 
         <Box sx={{ height: { xs: 120, md: 200 } }} />
 
@@ -154,7 +160,7 @@ export default function Home() {
           ]}
         />
         <Box sx={{ mt: 4, textAlign: 'center' }}>
-          <GreenButton label="Contacta" />
+          <GreenButton label="Solicita tu oficina virtual" />
         </Box>
       </SectionBox>
 
@@ -296,6 +302,41 @@ export default function Home() {
             {/* Add more interview cards as needed */}
           </Box>
         </Container>
+      </Box>
+
+      {/* Call to Action Section */}
+      <Box sx={{ py: 4, textAlign: 'center', bgcolor: '#f9f9f9' }}>
+        <ModernContactSection />
+      </Box>
+
+      {/* Floating WhatsApp Button */}
+      <Box
+        component="a"
+        href="https://wa.me/34666666666" // Replace with your WhatsApp number
+        target="_blank"
+        rel="noopener noreferrer"
+        sx={{
+          position: 'fixed',
+          bottom: 24,
+          right: 24,
+          zIndex: 9999,
+          width: 64,
+          height: 64,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxShadow: 'none',
+          bgcolor: 'transparent',
+          borderRadius: 0,
+          transition: 'box-shadow 0.2s',
+          '&:hover': {
+            boxShadow: 'none',
+            bgcolor: 'transparent',
+          },
+        }}
+        aria-label="WhatsApp"
+      >
+        <WhatsAppIcon sx={{ color: '#25D366', fontSize: 70 }} />
       </Box>
 
       {/* Footer */}
