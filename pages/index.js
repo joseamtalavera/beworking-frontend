@@ -51,7 +51,7 @@ export default function Home() {
   return (
     <>
       {/* Header */}
-      <AppBar position="static" color="transparent" elevation={0}>
+      <AppBar position="fixed" color="default" elevation={2} sx={{ top: 0, zIndex: 1201, bgcolor: '#fff', boxShadow: 2 }}>
         <Container>
           <HeaderToolbar disableGutters sx={{ justifyContent: 'space-between' }}>
             <Typography variant="h4" sx={{ color: '#000' }}>BeWorking</Typography>
@@ -60,14 +60,35 @@ export default function Home() {
               <MenuButton >BeSpaces</MenuButton>
               <MenuButton >Ayuda</MenuButton>
               <MenuButton >Login</MenuButton>
+              <Button
+                href="/main/contact"
+                variant="contained"
+                sx={{
+                  bgcolor: '#009624',
+                  color: '#fff',
+                  borderRadius: 999,
+                  px: 3,
+                  py: 1,
+                  ml: 2,
+                  textTransform: 'none',
+                  fontWeight: 600,
+                  boxShadow: 2,
+                  fontSize: '1.1rem',
+                  '&:hover': {
+                    bgcolor: '#007d3a',
+                  },
+                }}
+              >
+                Solicita
+              </Button>
             </MenuBox>
           </HeaderToolbar>
         </Container>
       </AppBar>
 
       {/* Main */}
-      <MainSection>
-        <StartContent maxWidth="md">
+      <MainSection sx={{ pt: { xs: 7, sm: 8 }, mt: { xs: 4, sm: 5 } }}>
+        <StartContent maxWidth="md" sx={{ pt: { xs: 8, sm: 10 } }}>
           <Typography variant="h1" component="h1" gutterBottom>
           Tu Oficina Virtual por 15 €/mes
           </Typography>
