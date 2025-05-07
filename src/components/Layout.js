@@ -28,15 +28,17 @@ export default function Layout({ children }) {
       <AppBar position="fixed" color="default" elevation={0} sx={{ top: 0, zIndex: 1201, bgcolor: '#fff', boxShadow: 1 }}>
         <Container>
           <HeaderToolbar disableGutters sx={{ justifyContent: 'space-between' }}>
-            <Typography variant="h4" sx={{ color: '#000', cursor: 'pointer' }} component={NextLink} href="/">
-              BeWorking
-            </Typography>
+            <NextLink href="/" passHref>
+              <Typography variant="h4" sx={{ color: '#000', cursor: 'pointer' }}>
+                BeWorking
+              </Typography>
+            </NextLink>
             <MenuBox>
               <MenuButton>Precio</MenuButton>
               <MenuButton>BeSpaces</MenuButton>
               <MenuButton>Ayuda</MenuButton>
-              <NextLink href="/main/login" passHref legacyBehavior>
-                <MenuButton component="a">Login</MenuButton>
+              <NextLink href="/main/login" passHref>
+                <MenuButton>Login</MenuButton>
               </NextLink>
               <Button
                 href="/main/contact"
@@ -76,6 +78,7 @@ export default function Layout({ children }) {
             <Link href="/main/about" color="inherit" sx={{ display: 'block', mb: 1, textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>Sobre Nosotros</Link>
             <Link href="/main/contact" color="inherit" sx={{ display: 'block', mb: 1, textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>Contacto</Link>
             <Link href="/main/index#precios" color="inherit" sx={{ display: 'block', mb: 1, textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>Precios</Link>
+            <Link href="/main/index#beSpaces" color="inherit" sx={{ display: 'block', mb: 1, textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>Blog</Link>
           </Box>
           {/* BeSpaces Column */}
           <Box sx={{ flex: 1 }}>

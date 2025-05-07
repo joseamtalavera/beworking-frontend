@@ -8,7 +8,7 @@ import { Grid, Box, Typography } from '@mui/material';
 export default function PilarSection({ title, image, description, benefits = [], reverse }) {
   return (
     <Grid container spacing={0} direction={reverse ? 'row-reverse' : 'row'} alignItems="center" justifyContent="center" sx={{ minHeight: 400 }}>
-      <Grid item xs={12} md={6} sx={{ p: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <Grid sx={{ p: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', width: { xs: '100%', md: '50%' } }}>
         <Box
           component="img"
           src={image}
@@ -22,7 +22,7 @@ export default function PilarSection({ title, image, description, benefits = [],
           }}
         />
       </Grid>
-      <Grid item xs={12} md={6} sx={{ p: 4, pl: { md: 8 }, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', textAlign: 'left' }}>
+      <Grid sx={{ p: 4, pl: { md: 8 }, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', textAlign: 'left', width: { xs: '100%', md: '50%' } }}>
         <Typography variant="h3" gutterBottom sx={{ whiteSpace: 'normal', wordBreak: 'break-word', maxWidth: 420, lineHeight: 1.2 }}>
           {title}
         </Typography>

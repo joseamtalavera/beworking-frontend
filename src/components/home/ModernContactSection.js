@@ -30,7 +30,7 @@ export default function ModernContactSection() {
           sx={{ mb: 2, background: '#fff', borderRadius: 1 }}
         />
         <Grid container spacing={2} sx={{ mb: 2 }}>
-          <Grid item xs={12} sm={6}>
+          <Grid sx={{ width: { xs: '100%', sm: '50%' } }}>
             <TextField
               fullWidth
               required
@@ -40,7 +40,7 @@ export default function ModernContactSection() {
               sx={{ background: '#fff', borderRadius: 1 }}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid sx={{ width: { xs: '100%', sm: '50%' } }}>
             <TextField
               fullWidth
               required

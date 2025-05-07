@@ -106,7 +106,7 @@ export default function GallerySection() {
             </IconButton>
             <Grid container spacing={1} justifyContent="center" alignItems="center">
               {images.map((src, index) => (
-                <Grid item xs={12} sm={6} md={3} key={index} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <Grid key={index} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: { xs: '100%', sm: '50%', md: '25%' } }}>
                   <Box
                     component="img"
                     src={src}
