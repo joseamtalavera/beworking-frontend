@@ -44,7 +44,7 @@ export default function Home() {
           Tu Oficina Virtual por 15 €/mes
           </Typography>
           <Typography variant="h3" gutterBottom>
-            Dirección para tu Empresa, Recogida de Paquetería y acceso a Espacios de Trabajo.
+            Dirección para tu Empresa, Recogida de Correspondencia y acceso a Espacios de Trabajo.
           </Typography>
           <Box sx={{ maxWidth: 480, width: '100%', mx: 'auto' }}>
             <GreenButton label="Solicita tu oficina virtual" />
