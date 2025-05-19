@@ -51,16 +51,31 @@ export default function SignInCard() {
     setOpen(false);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // we prevent the reload of the page
     if (emailError || passwordError) {
-      event.preventDefault();
       return;
     }
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    const email = data.get('email');
+    const password = data.get('password');
+
+    try {
+      const response = await fetch('http://localhost:8080/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        localStorage.setItem('token', data.token);
+        alert('Login successful');
+      } else {
+        alert('Login failed: ' + (data.message || 'Unknown error'));
+      }
+    } catch (error) {
+      alert('An error occurred: ' + error.message);
+    }
   };
 
   const validateInputs = () => {
