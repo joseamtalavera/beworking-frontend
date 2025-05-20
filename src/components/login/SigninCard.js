@@ -37,11 +37,16 @@ const Card = styled(MuiCard)(({ theme }) => ({
 }));
 
 export default function SignInCard() {
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
   const [emailError, setEmailError] = React.useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
   const [passwordError, setPasswordError] = React.useState(false);
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
   const [open, setOpen] = React.useState(false);
+  const [formError, setFormError] = React.useState('');
+  const [loading, setLoading] = React.useState(false);
+  const router = require('next/router').useRouter ? require('next/router').useRouter() : null;
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -51,40 +56,9 @@ export default function SignInCard() {
     setOpen(false);
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault(); // we prevent the reload of the page
-    if (emailError || passwordError) {
-      return;
-    }
-    const data = new FormData(event.currentTarget);
-    const email = data.get('email');
-    const password = data.get('password');
-
-    try {
-      const response = await fetch('http://localhost:8080/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
-      const data = await response.json();
-      if (response.ok) {
-        localStorage.setItem('token', data.token);
-        alert('Login successful');
-      } else {
-        alert('Login failed: ' + (data.message || 'Unknown error'));
-      }
-    } catch (error) {
-      alert('An error occurred: ' + error.message);
-    }
-  };
-
   const validateInputs = () => {
-    const email = document.getElementById('email');
-    const password = document.getElementById('password');
-
     let isValid = true;
-
-    if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
+    if (!email || !/\S+@\S+\.\S+/.test(email)) {
       setEmailError(true);
       setEmailErrorMessage('Please enter a valid email address.');
       isValid = false;
@@ -92,8 +66,7 @@ export default function SignInCard() {
       setEmailError(false);
       setEmailErrorMessage('');
     }
-
-    if (!password.value || password.value.length < 6) {
+    if (!password || password.length < 6) {
       setPasswordError(true);
       setPasswordErrorMessage('Password must be at least 6 characters long.');
       isValid = false;
@@ -101,8 +74,32 @@ export default function SignInCard() {
       setPasswordError(false);
       setPasswordErrorMessage('');
     }
-
     return isValid;
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setFormError('');
+    if (!validateInputs()) return;
+    setLoading(true);
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080'}/api/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        localStorage.setItem('token', data.token);
+        if (router) router.push('/dashboard');
+      } else {
+        setFormError(data.message || 'Login failed.');
+      }
+    } catch (error) {
+      setFormError(error.message || 'An error occurred.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -123,6 +120,9 @@ export default function SignInCard() {
         noValidate
         sx={{ display: 'flex', flexDirection: 'column', width: '100%', gap: 2 }}
       >
+        {formError && (
+          <Typography color="error" sx={{ mb: 1, textAlign: 'center' }}>{formError}</Typography>
+        )}
         <FormControl>
           <FormLabel htmlFor="email">Email</FormLabel>
           <TextField
@@ -138,6 +138,8 @@ export default function SignInCard() {
             fullWidth
             variant="outlined"
             color={emailError ? 'error' : 'primary'}
+            value={email}
+            onChange={e => setEmail(e.target.value)}
             sx={{
               '& .MuiOutlinedInput-root': {
                 '& fieldset': {
@@ -174,11 +176,12 @@ export default function SignInCard() {
             type="password"
             id="password"
             autoComplete="current-password"
-            autoFocus
             required
             fullWidth
             variant="outlined"
             color={passwordError ? 'error' : 'primary'}
+            value={password}
+            onChange={e => setPassword(e.target.value)}
             sx={{
               '& .MuiOutlinedInput-root': {
                 '& fieldset': {
@@ -203,10 +206,10 @@ export default function SignInCard() {
           type="submit"
           fullWidth
           variant="contained"
-          onClick={validateInputs}
+          disabled={loading}
           sx={{ bgcolor: '#009624', '&:hover': { bgcolor: '#007d3a' } }}
         >
-          Acceder
+          {loading ? 'Loading...' : 'Acceder'}
         </Button>
         <Typography sx={{ textAlign: 'center' }}>
           Don&apos;t have an account?{' '}
