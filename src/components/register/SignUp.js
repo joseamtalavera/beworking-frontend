@@ -67,6 +67,8 @@ export default function SignUp(props) {
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
   const [nameError, setNameError] = React.useState(false);
   const [nameErrorMessage, setNameErrorMessage] = React.useState('');
+  const [formMessage, setFormMessage] = React.useState('');
+  const [formSuccess, setFormSuccess] = React.useState(false);
 
   const validateInputs = () => {
     const email = document.getElementById('email');
@@ -105,17 +107,35 @@ export default function SignUp(props) {
     return isValid;
   };
 
-  const handleSubmit = (event) => {
-    if (nameError || emailError || passwordError) {
-      event.preventDefault();
-      return;
-    }
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setFormMessage('');
+    setFormSuccess(false);
+    if (!validateInputs()) return;
     const data = new FormData(event.currentTarget);
-    console.log({
+    const payload = {
       name: data.get('name'),
       email: data.get('email'),
       password: data.get('password'),
-    });
+    };
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8080'}/api/auth/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const result = await response.json();
+      if (response.ok) {
+        setFormSuccess(true);
+        setFormMessage('Cuenta creada correctamente. Ahora puedes iniciar sesión.');
+      } else {
+        setFormSuccess(false);
+        setFormMessage(result.message || 'Error al crear la cuenta.');
+      }
+    } catch (error) {
+      setFormSuccess(false);
+      setFormMessage('Error de red.');
+    }
   };
 
   return (
@@ -135,6 +155,9 @@ export default function SignUp(props) {
         onSubmit={handleSubmit}
         sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
       >
+        {formMessage && (
+          <Typography color={formSuccess ? 'success.main' : 'error'} sx={{ mb: 1, textAlign: 'center' }}>{formMessage}</Typography>
+        )}
         <FormControl>
           <FormLabel htmlFor="name">Nombre completo</FormLabel>
           <TextField
