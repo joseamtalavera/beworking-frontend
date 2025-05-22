@@ -118,6 +118,7 @@ export default function SignUp(props) {
       email: data.get('email'),
       password: data.get('password'),
     };
+    console.log('SignUp.js register payload:', payload); // Debug: log payload
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8080'}/api/auth/register`, {
         method: 'POST',
@@ -125,6 +126,7 @@ export default function SignUp(props) {
         body: JSON.stringify(payload),
       });
       const result = await response.json();
+      console.log('SignUp.js register response:', result); // Debug: log response
       if (response.ok) {
         setFormSuccess(true);
         setFormMessage('Cuenta creada correctamente. Ahora puedes iniciar sesión.');
